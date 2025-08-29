@@ -1,0 +1,15 @@
+services:
+  gemini-cli:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: gemini-cli
+    volumes:
+      - .:/app
+      - ./.gemini:/app/.gemini
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    tty: true
+    stdin_open: true
+    network_mode: "host"
